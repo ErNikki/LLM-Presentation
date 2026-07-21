@@ -17,7 +17,6 @@
 <!-- HUD -->
 <div class="hud">
   <div class="hud-section" id="hudSection">Introduzione</div>
-  <div class="hud-counter"><span id="slideNum">1</span> / <span id="slideTotal">1</span></div>
 </div>
 
 <!-- Help hint -->
@@ -621,7 +620,7 @@
         <div class="leak-head">🔓 CASO REALE · LA FUGA DEL SORGENTE DI CLAUDE CODE (31 mar 2026)<a class="src-link" href="https://ccunpacked.dev/" target="_blank" rel="noopener" style="margin-left:10px"><span class="sl-ic">↗</span> ccunpacked.dev</a></div>
         <div class="leak-points">
           <div class="leak-point"><b>Cosa è successo</b>Il pacchetto npm <code>@anthropic-ai/claude-code</code> v2.1.88 ha spedito per errore una <em>source-map</em>: ~512.000 righe finite su GitHub in poche ore.</div>
-          <div class="leak-point"><b>Cosa è stato esposto</b>System prompt, definizioni dei tool e lo <em>scaffolding</em> agentico — inclusi 44 feature flag non annunciati.</div>
+          <div class="leak-point"><b>Cosa è stato esposto</b>System prompt, definizioni dei tool e l'agentic <em>scaffolding</em> — inclusi 44 feature flag non annunciati.</div>
           <div class="leak-point"><b>Perché conta</b>Prompt e architettura, normalmente invisibili, sono asset preziosi: i concorrenti hanno potuto replicarne il prompt engineering.</div>
         </div>
       </div>
@@ -809,6 +808,16 @@
                     <div class="mxrow dots"><span>⋮</span><span>⋮</span><span>⋮</span><span></span></div>
                   </div>
                 </div>
+              </div>
+              <div class="emx-pos">
+                <div class="emx-pos-eq">
+                  <span class="epx tok"><b>E<sub>token</sub></b><em>quale parola</em></span>
+                  <span class="epx-op">+</span>
+                  <span class="epx pos"><b>E<sub>pos</sub></b><em>quale posizione</em></span>
+                  <span class="epx-op">=</span>
+                  <span class="epx fin"><b>E<sub>finale</sub></b><em>entra nei blocchi</em></span>
+                </div>
+                <div class="emx-pos-why">A ogni token si <b>somma</b> il vettore della sua posizione: senza, l'attention non distingue l'<b>ordine</b> delle parole. Matrice <b>W<sub>pos</sub></b>: 2.048 × d.</div>
               </div>
             </div>
             <div class="f3-card aside">
@@ -1083,7 +1092,7 @@
           <div class="am-stage t-soft active">Softmax<span class="am-sub">→ token</span></div>
         </aside>
         <div class="phase-main">
-          <svg viewBox="0 0 950 315" style="width:100%;height:auto" role="img" aria-label="Dai 96 blocchi esce il vettore hidden state h, il contesto arricchito. La matrice di unembedding U ha una riga per ognuno dei circa 100.277 token: il prodotto scalare tra la riga e h dà un punteggio (logit) per token. La softmax converte i punteggi in probabilità che sommano a 100% e si campiona il token «È», che rientra come input: generazione autoregressiva.">
+          <svg class="usv" viewBox="0 0 950 315" style="width:100%;height:auto" role="img" aria-label="Dai 96 blocchi esce il vettore hidden state h, il contesto arricchito. La matrice di unembedding U ha una riga per ognuno dei circa 100.277 token: il prodotto scalare tra la riga e h dà un punteggio (logit) per token. La softmax converte i punteggi in probabilità che sommano a 100% e si campiona il token «È», che rientra come input: generazione autoregressiva.">
             <defs>
               <marker id="usArr" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L6.5,3 L0,6 Z" fill="var(--text-dim)"/></marker>
               <marker id="usArrA" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L6.5,3 L0,6 Z" fill="var(--accent)"/></marker>
@@ -1176,6 +1185,42 @@
             <text x="475" y="302" text-anchor="middle" style="font:600 12px 'Inter',sans-serif" fill="var(--accent)">↻ il token scelto rientra come input · autoregressivo · streaming</text>
           </svg>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Riepilogo parametri GPT-3 ============ -->
+
+  <section class="slide" data-section="Riepilogo">
+    <div class="slide-inner">
+      <div class="kicker">Riepilogo — Dove vivono i 175 miliardi</div>
+      <h2>GPT-3: <span class="grad">parametri per matrice</span></h2>
+      <dl class="ptab-legend">
+        <div><dt>Sequenza</dt><dd>fino a <b>2.048</b> token, ognuno un vettore da <b>12.288</b> componenti <span>(d<sub>model</sub>)</span></dd></div>
+        <div><dt>Profondità</dt><dd><b>96</b> layer Transformer impilati</dd></div>
+        <div><dt>Attention</dt><dd><b>96</b> head × <b>128</b> dim = <b>12.288</b> <span>(= d<sub>model</sub>)</span></dd></div>
+        <div><dt>Vocabolario</dt><dd><b>50.257</b> token distinti <span>(righe della matrice E)</span></dd></div>
+      </dl>
+      <div class="ptab-wrap">
+        <table class="ptab">
+          <thead>
+            <tr><th>Matrice</th><th>Dimensioni</th><th>Par./matrice</th><th>×</th><th class="tot">Totale</th></tr>
+          </thead>
+          <tbody>
+            <tr class="g-emb"><td>Token embedding <code>W<sub>E</sub></code></td><td>50.257 × 12.288</td><td>617 M</td><td>1</td><td class="tot">0,62 B</td></tr>
+            <tr class="g-emb"><td>Positional <code>W<sub>pos</sub></code></td><td>2.048 × 12.288</td><td>25 M</td><td>1</td><td class="tot">0,03 B</td></tr>
+            <tr class="g-attn"><td>Query <code>W<sub>Q</sub></code></td><td>12.288 × 12.288</td><td>151 M</td><td>96</td><td class="tot">14,5 B</td></tr>
+            <tr class="g-attn"><td>Key <code>W<sub>K</sub></code></td><td>12.288 × 12.288</td><td>151 M</td><td>96</td><td class="tot">14,5 B</td></tr>
+            <tr class="g-attn"><td>Value <code>W<sub>V</sub></code></td><td>12.288 × 12.288</td><td>151 M</td><td>96</td><td class="tot">14,5 B</td></tr>
+            <tr class="g-attn"><td>Output <code>W<sub>O</sub></code></td><td>12.288 × 12.288</td><td>151 M</td><td>96</td><td class="tot">14,5 B</td></tr>
+            <tr class="g-mlp"><td>MLP su <code>W<sub>1</sub></code></td><td>12.288 × 49.152</td><td>604 M</td><td>96</td><td class="tot">58,0 B</td></tr>
+            <tr class="g-mlp"><td>MLP giù <code>W<sub>2</sub></code></td><td>49.152 × 12.288</td><td>604 M</td><td>96</td><td class="tot">58,0 B</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td colspan="4">Totale (+ bias e layer-norm)</td><td class="tot">≈ 175 B</td></tr>
+          </tfoot>
+        </table>
+        <p class="ptab-note"><span class="dot g-attn"></span> Attention ≈ 58 B · <span class="dot g-mlp"></span> MLP ≈ 116 B (⅔ dei pesi) · l'unembedding condivide i pesi di <code>W<sub>E</sub></code></p>
       </div>
     </div>
   </section>

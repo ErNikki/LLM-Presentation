@@ -7,8 +7,6 @@
   let current = 0;
 
   const progressFill = document.getElementById('progressFill');
-  const slideNum = document.getElementById('slideNum');
-  const slideTotal = document.getElementById('slideTotal');
   const hudSection = document.getElementById('hudSection');
   const navPrev = document.getElementById('navPrev');
   const navNext = document.getElementById('navNext');
@@ -16,7 +14,6 @@
   const overview = document.getElementById('overview');
   const overviewInner = document.getElementById('overviewInner');
 
-  slideTotal.textContent = total;
 
   // titoli brevi per l'indice (overview)
   const titles = slides.map(s => {
@@ -34,7 +31,6 @@
     });
     current = idx;
     progressFill.style.width = ((idx) / (total - 1) * 100) + '%';
-    slideNum.textContent = idx + 1;
     hudSection.innerHTML = slides[idx].dataset.section || '';
     navPrev.disabled = idx === 0;
     navNext.disabled = idx === total - 1;

@@ -1104,10 +1104,13 @@ kbd { font-family: 'JetBrains Mono', monospace; background: var(--surface-2); bo
 /* ===== Fase 4 — MLP: espandi · non-linearità · ricomprimi (position-wise) ===== */
 .slide:has(.mlpv) .slide-inner { max-width: 1500px; }
 .slide:has(.mlpv) .phase { align-items: center; }
+.slide:has(.usv) .slide-inner { max-width: 1460px; }
+.slide:has(.usv) .phase { align-items: center; }
+.usv { max-width: 1180px; margin: auto; }
 .mlp-lead { font-size: 0.98rem; color: var(--text-dim); line-height: 1.55; text-align: center; max-width: 880px; margin: 0 auto 4px; }
 .mlp-lead b { color: var(--text); }
 .mlpv-seq { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-2); white-space: nowrap; }
-.mlpv { display: block; width: 100%; height: auto; max-width: 900px; margin: 6px auto 0; }
+.mlpv { display: block; width: 100%; height: auto; max-width: 1180px; margin: 6px auto 0; }
 .mlp-flow { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 6px; }
 .mlp-col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .mlp-dimlab { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-faint); }
@@ -1270,14 +1273,14 @@ kbd { font-family: 'JetBrains Mono', monospace; background: var(--surface-2); bo
 .at2-tab.on { border-color:var(--accent); color:#5a4bd0; background:rgba(var(--accent-rgb),.07); }
 .at2-tab.on .n { background:var(--grad); color:var(--on-accent); }
 
-.at2-stage { position:relative; width:100%; min-height:400px; }
+.at2-stage { position:relative; width:100%; min-height:480px; }
 .at2-step { position:absolute; inset:0; display:none; flex-direction:column; align-items:center; justify-content:center; gap:14px; }
 .at2-step.on { display:flex; animation: at2fade .55s var(--ease); }
 @keyframes at2fade { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
-.at2-htitle { font-family:'JetBrains Mono',monospace; font-size:.82rem; font-weight:700; letter-spacing:.03em; color:var(--text-dim); text-align:center; }
+.at2-htitle { font-family:'JetBrains Mono',monospace; font-size:.94rem; font-weight:700; letter-spacing:.03em; color:var(--text-dim); text-align:center; }
 .at2-htitle b { color:#5a4bd0; }
 
-.at2-flow { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
+.at2-flow { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; transform:scale(1.14); } /* ponytail: scale enlarges matrices incl. inline column widths */
 .at2-op { align-self:center; display:flex; flex-direction:column; align-items:center; gap:2px; font-family:'JetBrains Mono',monospace; font-size:.86rem; font-weight:800; color:var(--accent-2); text-align:center; }
 .at2-op small { font-size:.56rem; color:var(--text-faint); font-weight:600; line-height:1.15; }
 
@@ -1308,7 +1311,7 @@ kbd { font-family: 'JetBrains Mono', monospace; background: var(--surface-2); bo
 .at2-rvec { display:flex; gap:3px; }
 .at2-rcell { width:34px; height:22px; display:grid; place-items:center; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:.6rem; font-weight:700; color:#242838; }
 .at2-rop { font-family:'JetBrains Mono',monospace; font-size:.9rem; font-weight:800; color:var(--text-faint); }
-.at2-note { font-size:.74rem; color:var(--text-faint); text-align:center; margin-top:3px; }
+.at2-note { font-size:.88rem; color:var(--text-faint); text-align:center; margin-top:3px; }
 .at2-note b { color:#5a4bd0; }
 @media (max-width: 1160px) { .at2-flow { gap:8px; } }
 .slide:has(.mech2) .mech-foot { font-size: 0.84rem; }
@@ -1476,3 +1479,46 @@ kbd { font-family: 'JetBrains Mono', monospace; background: var(--surface-2); bo
 .slide:has(.rag2) .mock-vdb .vdb-row:has(+ .step-how) { margin-bottom: auto; }
 .slide:has(.rag2) .mock-embed .step-how,
 .slide:has(.rag2) .mock-vdb .step-how { margin-top: 0; }
+
+/* ---------- Riepilogo: tabella parametri GPT-3 ---------- */
+.ptab-legend { margin-top: 20px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 28px; }
+.ptab-legend > div { display: flex; align-items: baseline; gap: 12px; }
+.ptab-legend dt { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-2); min-width: 96px; flex-shrink: 0; }
+.ptab-legend dd { margin: 0; font-size: 0.95rem; color: var(--text-dim); }
+.ptab-legend dd b { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--text); }
+.ptab-legend dd span { color: var(--text-faint); }
+.ptab-wrap { margin-top: 24px; }
+.ptab { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.ptab th, .ptab td { padding: 11px 18px; text-align: right; border-bottom: 1px solid var(--border); }
+.ptab th:first-child, .ptab td:first-child { text-align: left; }
+.ptab thead th { font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-dim); font-weight: 600; }
+.ptab td { font-family: 'JetBrains Mono', monospace; font-size: 0.98rem; color: var(--text); }
+.ptab td:first-child { font-family: 'Inter', sans-serif; color: var(--text); }
+.ptab code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; color: var(--text-dim); }
+.ptab .tot { font-weight: 700; }
+.ptab tbody tr td:first-child { border-left: 3px solid transparent; padding-left: 15px; }
+.ptab tr.g-attn td:first-child { border-left-color: var(--accent); }
+.ptab tr.g-mlp td:first-child { border-left-color: var(--accent-2); }
+.ptab tr.g-emb td:first-child { border-left-color: var(--text-faint); }
+.ptab tfoot td { font-weight: 700; border-bottom: none; background: var(--surface-2); }
+.ptab tfoot .tot { color: var(--accent); }
+.ptab-note { margin-top: 16px; font-size: 0.9rem; color: var(--text-dim); }
+.ptab-note .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: middle; margin-right: 4px; }
+.ptab-note .dot.g-attn { background: var(--accent); }
+.ptab-note .dot.g-mlp { background: var(--accent-2); }
+
+/* posizione: matrice posizionale sommata all'embedding (Fase 3) */
+.emx-pos { margin-top: 4px; padding: 12px; border-radius: 10px; background: rgba(var(--accent-2-rgb),0.07); border: 1px dashed rgba(var(--accent-2-rgb),0.4); }
+.emx-pos-eq { display: flex; align-items: stretch; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.epx { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 12px; border-radius: 8px; background: var(--bg-2); border: 1px solid var(--border); text-align: center; }
+.epx b { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+.epx em { font-size: 0.72rem; font-style: normal; color: var(--text-dim); }
+.epx.tok b { color: var(--accent); }
+.epx.pos b { color: var(--accent-2); }
+.epx.fin { border-color: rgba(var(--accent-2-rgb),0.5); background: rgba(var(--accent-2-rgb),0.1); }
+.epx-op { align-self: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 1.2rem; color: var(--text-dim); }
+.emx-pos-why { margin-top: 10px; font-size: 0.78rem; color: var(--text-dim); text-align: center; }
+.emx-pos-why b { color: var(--text); }
+.slide:has(.f3-tok) .epx b { font-size: 1.02rem; }
+.slide:has(.f3-tok) .epx em { font-size: 0.82rem; }
+.slide:has(.f3-tok) .emx-pos-why { font-size: 0.9rem; }
