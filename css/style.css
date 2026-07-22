@@ -83,6 +83,7 @@ mono, code, .mono { font-family: 'JetBrains Mono', monospace; }
   opacity: 1; visibility: visible; transform: none; pointer-events: auto;
 }
 .slide.past { transform: translateX(-60px) scale(0.98); }
+.slide.opt-off { display: none; }  /* Shift+9: slide opzionali nascoste */
 
 /* margin:auto centra in verticale ma, se il contenuto è più alto del viewport,
    lascia scrollare dall'alto senza tagliare (a differenza di align-items:center) */
@@ -1259,7 +1260,7 @@ kbd { font-family: 'JetBrains Mono', monospace; background: var(--surface-2); bo
 .at2-top { display:flex; align-items:center; justify-content:center; gap:22px; flex-wrap:wrap; }
 .at2-anim { background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:6px 12px; box-shadow:0 6px 16px rgba(var(--ink-rgb),.05); }
 .at2-anim svg { width:440px; height:auto; display:block; }
-.at2-topformula { font-family:'JetBrains Mono',monospace; font-size:1.02rem; color:var(--text-dim); background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px 20px; }
+.at2-topformula { font-family:'JetBrains Mono',monospace; font-size:1.02rem; color:var(--text-dim); background:#fdf6e3; border:1px solid #e8d9a8; border-radius:12px; padding:14px 20px; }
 .at2-topformula .q{color:#b98600;font-weight:800} .at2-topformula .k{color:#0a8175;font-weight:800} .at2-topformula .v{color:#c0307a;font-weight:800}
 .satflow { fill:none; stroke-width:2.4; stroke-linecap:round; stroke-dasharray:5 8; }
 .satflow.q { stroke:#c79200; animation: satdash .85s linear infinite; }

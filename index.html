@@ -21,7 +21,7 @@
 
 <!-- Help hint -->
 <div class="kbd-hint" id="kbdHint">
-  <kbd>←</kbd><kbd>→</kbd> naviga &nbsp;·&nbsp; <kbd>Shift</kbd>+<kbd>0</kbd> indice &nbsp;·&nbsp; <kbd>F</kbd> fullscreen
+  <kbd>←</kbd><kbd>→</kbd> naviga &nbsp;·&nbsp; <kbd>Shift</kbd>+<kbd>0</kbd> indice &nbsp;·&nbsp; <kbd>Shift</kbd>+<kbd>9</kbd> versione corta &nbsp;·&nbsp; <kbd>F</kbd> fullscreen
 </div>
 
 <!-- Overview / index overlay -->
@@ -511,7 +511,7 @@
             <rect class="tf-pink" x="68" y="122" width="146" height="50" rx="9" opacity=".4"/>
             <rect class="tf-pink" x="64" y="125" width="146" height="50" rx="9" opacity=".7"/>
             <rect class="tf-pink" x="60" y="128" width="146" height="50" rx="9"/>
-            <text class="tf-bt t-pink" x="133" y="148" text-anchor="middle">Multi-head masked</text>
+            <text class="tf-bt t-pink" x="133" y="148" text-anchor="middle">Multi-head</text>
             <text class="tf-bt t-pink" x="133" y="165" text-anchor="middle">self-attention</text>
             <!-- RETURN to stream via the + node -->
             <path class="tf-flow" d="M210,168 L288,168" marker-end="url(#tfArrowG)"/>
@@ -574,7 +574,7 @@
   </section>
 
   <!-- Step 1 system prompt -->
-  <section class="slide" data-section="Il Ciclo di una Richiesta">
+  <section class="slide" data-section="Il Ciclo di una Richiesta" data-optional>
     <div class="slide-inner">
       <div class="kicker">Fase 1</div>
       <h2><span class="step-pill">1</span> Iniezione del System Prompt</h2>
@@ -628,7 +628,7 @@
   </section>
 
   <!-- Step 2b — RAG: i due meccanismi -->
-  <section class="slide" data-section="Il Ciclo di una Richiesta">
+  <section class="slide" data-section="Il Ciclo di una Richiesta" data-optional>
     <div class="slide-inner">
       <div class="kicker">Fase 2 — RAG </div>
       <h2><span class="step-pill">2</span> Dentro il RAG: <span class="grad">come funziona</span></h2>
@@ -784,7 +784,7 @@
           <div class="f3-cols">
             <div class="f3-card">
               <div class="f3-card-h">Fase 2 · Embedding</div>
-              <div class="emx-dims">matrice <b>E</b> · ~<b>100.277</b> righe × <b>d</b> dimensioni</div>
+              <div class="emx-dims">matrice <b>E</b> · <b>50.257</b> righe × <b>d</b> dimensioni</div>
               <div class="emx2">
                 <div class="emx2-labels">
                   <div class="emx2-cap">id · token</div>
@@ -1092,7 +1092,7 @@
           <div class="am-stage t-soft active">Softmax<span class="am-sub">→ token</span></div>
         </aside>
         <div class="phase-main">
-          <svg class="usv" viewBox="0 0 950 315" style="width:100%;height:auto" role="img" aria-label="Dai 96 blocchi esce il vettore hidden state h, il contesto arricchito. La matrice di unembedding U ha una riga per ognuno dei circa 100.277 token: il prodotto scalare tra la riga e h dà un punteggio (logit) per token. La softmax converte i punteggi in probabilità che sommano a 100% e si campiona il token «È», che rientra come input: generazione autoregressiva.">
+          <svg class="usv" viewBox="0 0 950 315" style="width:100%;height:auto" role="img" aria-label="Dai 96 blocchi esce il vettore hidden state h, il contesto arricchito. La matrice di unembedding U ha una riga per ognuno dei 50.257 token: il prodotto scalare tra la riga e h dà un punteggio (logit) per token. La softmax converte i punteggi in probabilità che sommano a 100% e si campiona il token «È», che rientra come input: generazione autoregressiva.">
             <defs>
               <marker id="usArr" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L6.5,3 L0,6 Z" fill="var(--text-dim)"/></marker>
               <marker id="usArrA" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L6.5,3 L0,6 Z" fill="var(--accent)"/></marker>
@@ -1141,7 +1141,7 @@
             <text class="usv-tok" x="250" y="197">127</text>
             <text class="usv-n" x="330" y="197" text-anchor="middle">1.1</text><text class="usv-n" x="374" y="197" text-anchor="middle">−0.7</text><text class="usv-n" x="418" y="197" text-anchor="middle">0.2</text><text class="usv-n" x="458" y="197" text-anchor="middle">…</text>
             <text class="usv-n" x="364" y="222" text-anchor="middle">⋮</text>
-            <text class="usv-s" x="364" y="244" text-anchor="middle">≈100.277 righe · una per token</text>
+            <text class="usv-s" x="364" y="244" text-anchor="middle">50.257 righe · una per token</text>
 
             <text class="usv-big" x="504" y="154" text-anchor="middle">=</text>
 

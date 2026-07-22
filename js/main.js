@@ -2,8 +2,9 @@
    Navigazione del deck — Sotto il Cofano degli LLM
    ============================================================ */
 (() => {
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  const total = slides.length;
+  const allSlides = Array.from(document.querySelectorAll('.slide'));
+  let slides = allSlides;
+  let total = slides.length;
   let current = 0;
 
   const progressFill = document.getElementById('progressFill');
@@ -15,12 +16,23 @@
   const overviewInner = document.getElementById('overviewInner');
 
 
-  // titoli brevi per l'indice (overview)
-  const titles = slides.map(s => {
+  // titolo breve per l'indice (overview)
+  const shortTitle = s => {
     const h = s.querySelector('h1, h2, .divider-title, .paper-title');
     let t = h ? h.textContent.trim().replace(/\s+/g, ' ') : 'Slide';
     return t.length > 42 ? t.slice(0, 40) + '…' : t;
-  });
+  };
+
+  // Shift+9: nasconde/mostra le slide opzionali (System Prompt + RAG) per accorciare il talk
+  function toggleOptional() {
+    const activeSlide = slides[current];
+    allSlides.forEach(s => { if (s.dataset.optional !== undefined) s.classList.toggle('opt-off'); });
+    slides = allSlides.filter(s => !s.classList.contains('opt-off'));
+    total = slides.length;
+    buildOverview();
+    const idx = slides.indexOf(activeSlide);
+    show(idx === -1 ? Math.min(current, total - 1) : idx);
+  }
 
   function show(idx, dir) {
     idx = Math.max(0, Math.min(total - 1, idx));
@@ -57,6 +69,7 @@
 
   // ---- keyboard ----
   document.addEventListener('keydown', (e) => {
+    if (e.shiftKey && e.code === 'Digit9') { e.preventDefault(); toggleOptional(); return; }
     if (overview.classList.contains('open')) {
       if (e.key === 'Escape' || (e.shiftKey && e.code === 'Digit0')) toggleOverview();
       return;
@@ -112,11 +125,11 @@
       const card = document.createElement('button');
       card.type = 'button';
       card.className = 'ov-card';
-      card.setAttribute('aria-label', `Vai alla slide ${i + 1}: ${titles[i]}`);
+      card.setAttribute('aria-label', `Vai alla slide ${i + 1}: ${shortTitle(s)}`);
       card.innerHTML = `
         <div class="ov-num">${String(i + 1).padStart(2, '0')}</div>
         <div class="ov-sec">${s.dataset.section || ''}</div>
-        <div class="ov-title">${titles[i]}</div>`;
+        <div class="ov-title">${shortTitle(s)}</div>`;
       card.addEventListener('click', () => { toggleOverview(); show(i); });
       overviewInner.appendChild(card);
     });
