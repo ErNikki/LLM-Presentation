@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-26T10:40:00Z",
+  "title": "Design System: Sotto il Cofano degli LLM",
+  "extensions": {
+    "colorMeta": {
+      "primary":  { "role": "primary",  "displayName": "Signal Violet", "canonical": "#6c5ce7", "tonalRamp": ["#1a1442","#291c66","#3a2790","#4d35bd","#6c5ce7","#8e82ed","#b3acf3","#ddd9fa"] },
+      "teal":     { "role": "secondary","displayName": "Diagram Teal",  "canonical": "#0a9d92", "tonalRamp": ["#03241f","#063b34","#0a544b","#0d7a6f","#0a9d92","#1ec3b6","#62d8ce","#bdeee9"] },
+      "magenta":  { "role": "tertiary", "displayName": "Accent Magenta","canonical": "#e84393", "tonalRamp": ["#3a0e26","#5d1640","#80205c","#b32d7f","#e84393","#ef6fac","#f59cc6","#fbd2e4"] },
+      "reward":   { "role": "tertiary", "displayName": "Reward Gold",   "canonical": "#caa11e", "tonalRamp": ["#2e2405","#473709","#664f0d","#8a6d10","#caa11e","#dcbb4e","#e9d488","#f5ecc4"] },
+      "danger":   { "role": "tertiary", "displayName": "Warning Red",   "canonical": "#e0395e", "tonalRamp": ["#3a0c18","#5c1326","#811b37","#b3274d","#e0395e","#e96b85","#f29db0","#fad3db"] },
+      "bg":       { "role": "neutral",  "displayName": "Cool Page",     "canonical": "#f6f7fb", "tonalRamp": ["#16171f","#24262f","#3b3e4a","#5a5d6b","#898ea3","#b6bac8","#dadce6","#f6f7fb"] },
+      "ink":      { "role": "neutral",  "displayName": "Ink",          "canonical": "#1b1d2b", "tonalRamp": ["#0e0f17","#1b1d2b","#2c2f43","#4d5165","#6d7187","#9498ab","#c2c5d2","#e8e9f0"] }
+    },
+    "typographyMeta": {
+      "display":  { "displayName": "Display",  "purpose": "Cover title only — the one place the deck raises its voice." },
+      "headline": { "displayName": "Headline", "purpose": "Per-slide h2 — the argument of the slide." },
+      "lead":     { "displayName": "Lead",     "purpose": "Opening statement under a headline; light weight, ink-dark." },
+      "label":    { "displayName": "Label/Mono", "purpose": "JetBrains Mono for machine artifacts — counts, tags, tokens, code." }
+    },
+    "shadows": [
+      { "name": "resting",     "value": "0 2px 6px rgba(20,22,40,0.05), 0 1px 2px rgba(20,22,40,0.04)", "purpose": "Cards and chips at rest." },
+      { "name": "raised",      "value": "0 10px 30px -8px rgba(20,22,40,0.12), 0 2px 6px rgba(20,22,40,0.05)", "purpose": "Branch cards, nav arrows, HUD." },
+      { "name": "lifted",      "value": "0 26px 60px -16px rgba(20,22,40,0.20), 0 6px 16px rgba(20,22,40,0.07)", "purpose": "Card hover state." },
+      { "name": "accent-glow", "value": "0 14px 36px -10px rgba(108,92,231,0.40)", "purpose": "Primary button and active nav arrow only — the violet halo on the live action." }
+    ],
+    "motion": [
+      { "name": "ease",        "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Default ease-out for slide transitions, hover lifts, reveals." },
+      { "name": "slide-change","value": "opacity 0.6s, transform 0.6s", "purpose": "Slide enter/exit: fade + 60px translateX + slight scale." },
+      { "name": "stagger-rise","value": "rise 0.7s backwards, +0.08s per child", "purpose": "Staggered entrance of a slide's direct children." }
+    ],
+    "breakpoints": []
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary action — violet→teal gradient with accent glow. Rare; the deck is keyboard-driven.",
+      "html": "<button class=\"ds-btn-primary\">Continua</button>",
+      "css": ".ds-btn-primary { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.98rem; padding: 12px 24px; border-radius: 10px; border: none; cursor: pointer; background: linear-gradient(120deg, #6c5ce7 0%, #0a9d92 100%); color: #fff; box-shadow: 0 14px 36px -10px rgba(108,92,231,0.40); transition: transform 0.2s, box-shadow 0.2s; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -10px rgba(108,92,231,0.5); } .ds-btn-primary:focus-visible { outline: 2px solid #6c5ce7; outline-offset: 3px; } .ds-btn-primary:disabled { opacity: 0.4; transform: none; box-shadow: none; cursor: default; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action — surface-tint fill, hairline border.",
+      "html": "<button class=\"ds-btn-ghost\">Indietro</button>",
+      "css": ".ds-btn-ghost { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.98rem; padding: 12px 24px; border-radius: 10px; cursor: pointer; background: rgba(20,22,40,0.035); color: #1b1d2b; border: 1px solid rgba(20,22,40,0.12); transition: transform 0.2s, border-color 0.2s; } .ds-btn-ghost:hover { transform: translateY(-2px); border-color: #6c5ce7; } .ds-btn-ghost:focus-visible { outline: 2px solid #6c5ce7; outline-offset: 3px; }"
+    },
+    {
+      "name": "Concept Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Soft-lifted card with figure icon, title, body; rises and borders violet on hover.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-icon\"><svg viewBox=\"0 0 64 64\" width=\"42\" height=\"42\" fill=\"none\" stroke=\"#6c5ce7\" stroke-width=\"3\"><circle cx=\"32\" cy=\"32\" r=\"23\"/><circle cx=\"32\" cy=\"32\" r=\"13\"/><circle cx=\"32\" cy=\"32\" r=\"4\" fill=\"#0a9d92\" stroke=\"none\"/></svg></div><h3 class=\"ds-card-title\">Scopo</h3><p class=\"ds-card-body\">Comprendere a fondo il funzionamento interno, non solo l'output.</p></div>",
+      "css": ".ds-card { background: linear-gradient(180deg, #ffffff, rgba(20,22,40,0.035)); border: 1px solid rgba(20,22,40,0.12); border-radius: 18px; padding: 26px; box-shadow: 0 2px 6px rgba(20,22,40,0.05), 0 1px 2px rgba(20,22,40,0.04); transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s, box-shadow 0.3s; max-width: 320px; } .ds-card:hover { transform: translateY(-6px); border-color: #6c5ce7; box-shadow: 0 26px 60px -16px rgba(20,22,40,0.20), 0 6px 16px rgba(20,22,40,0.07); } .ds-card-icon { margin-bottom: 14px; } .ds-card-title { font-family: 'Inter', sans-serif; font-size: 1.18rem; font-weight: 700; color: #1b1d2b; margin: 0 0 8px; } .ds-card-body { font-family: 'Inter', sans-serif; font-size: 0.98rem; line-height: 1.6; color: #4d5165; margin: 0; }"
+    },
+    {
+      "name": "Kicker Chip",
+      "kind": "chip",
+      "refersTo": "button-ghost",
+      "description": "Pill label above a heading — teal mono-ish label in a tinted pill. (Numbered variant is slop debt; prefer a plain named kicker.)",
+      "html": "<span class=\"ds-kicker\">Introduzione</span>",
+      "css": ".ds-kicker { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0a9d92; padding: 6px 14px; border: 1px solid rgba(20,22,40,0.12); border-radius: 999px; background: rgba(20,22,40,0.035); }"
+    },
+    {
+      "name": "Nav Arrow",
+      "kind": "nav",
+      "refersTo": "button-ghost",
+      "description": "Fixed circular glass nav button; fills violet with glow on hover.",
+      "html": "<button class=\"ds-nav-arrow\" aria-label=\"Prossima slide\">→</button>",
+      "css": ".ds-nav-arrow { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.6); -webkit-backdrop-filter: saturate(150%) blur(14px); backdrop-filter: saturate(150%) blur(14px); border: 1px solid rgba(20,22,40,0.12); color: #1b1d2b; font-size: 1.8rem; line-height: 1; cursor: pointer; display: grid; place-items: center; box-shadow: 0 10px 30px -8px rgba(20,22,40,0.12), 0 2px 6px rgba(20,22,40,0.05); transition: all 0.25s cubic-bezier(0.22,1,0.36,1); } .ds-nav-arrow:hover { background: #6c5ce7; color: #fff; border-color: #6c5ce7; transform: scale(1.08); box-shadow: 0 14px 36px -10px rgba(108,92,231,0.40); } .ds-nav-arrow:disabled { opacity: 0.2; cursor: default; }"
+    },
+    {
+      "name": "HUD Counter",
+      "kind": "custom",
+      "refersTo": "button-ghost",
+      "description": "Top-right slide position — mono counter in a glass pill, violet current number.",
+      "html": "<div class=\"ds-hud\"><span class=\"ds-hud-section\">Introduzione</span><span class=\"ds-hud-counter\"><span class=\"ds-now\">3</span> / 24</span></div>",
+      "css": ".ds-hud { display: inline-flex; gap: 14px; align-items: center; font-family: 'Inter', sans-serif; font-size: 0.82rem; } .ds-hud-section { color: #4d5165; letter-spacing: 0.05em; } .ds-hud-counter { font-family: 'JetBrains Mono', monospace; color: #898ea3; background: rgba(255,255,255,0.55); -webkit-backdrop-filter: saturate(150%) blur(14px); backdrop-filter: saturate(150%) blur(14px); border: 1px solid rgba(20,22,40,0.12); padding: 4px 12px; border-radius: 999px; box-shadow: 0 2px 6px rgba(20,22,40,0.05); } .ds-now { color: #0a9d92; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lab Notebook",
+    "overview": "A technical deck that explains a machine by drawing it. Findings are laid out with engineering clarity on a cool, near-white page; ink-dark text carries the prose, a monospace voice marks the technical asides, and every slide resolves to one figure that makes a single mechanism visible. The lineage is Distill.pub and 3Blue1Brown crossed with Stripe/Linear docs. It is shown projected to a room of technical peers, so it reads from the back row. The personality is precise, lucid, unshowy: depth comes from sequence, one idea per slide, and color is used as signal, not decoration. Surfaces are soft-lifted — a quiet shadow at rest, a gentle rise on hover.",
+    "keyCharacteristics": [
+      "Cool near-white page (#f6f7fb), ink-dark text, projection-legible contrast.",
+      "One accent as signal (violet primary), one counter-voice (teal); magenta/red reserved for warnings.",
+      "Inter across the whole hierarchy, JetBrains Mono for the technical/label voice.",
+      "Diagrams (hand-built SVG) lead; text annotates.",
+      "Soft-lifted surfaces: quiet shadow at rest, rise on hover."
+    ],
+    "rules": [
+      { "name": "The Two-Voice Rule", "body": "Diagrams speak in exactly two hues — Signal Violet and Diagram Teal — to separate the two sides of an idea. A third color in a figure must mean a third thing (usually Warning Red for failure), or it doesn't belong.", "section": "colors" },
+      { "name": "The Signal-Not-Decoration Rule", "body": "Color carries meaning. If a fill, glow, or accent isn't distinguishing one concept from another, it's decoration — remove it or make it neutral.", "section": "colors" },
+      { "name": "The One Display Rule", "body": "The 900-weight display scale appears on the cover and nowhere else. Inside the deck, hierarchy is carried by the headline/lead/body steps.", "section": "typography" },
+      { "name": "The Mono-Is-Technical Rule", "body": "JetBrains Mono means 'this is a machine artifact' — a count, a tag, a token, code. Never use it for prose just for flavor.", "section": "typography" },
+      { "name": "The Rise-On-Hover Rule", "body": "Interactive surfaces translate up (−6px cards, −2px buttons) and deepen their shadow on hover. The motion and the shadow change together; one without the other looks broken.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do lead each slide with one figure that makes a single mechanism visible; let prose annotate the figure, never the reverse.",
+      "Do keep the two-voice color discipline in diagrams: Signal Violet (#6c5ce7) and Diagram Teal (#0a9d92), with a third hue only when it means a third thing.",
+      "Do keep contrast projection-safe: ink (#1b1d2b) / ink-dim (#4d5165) on the cool page; never drop body copy to ink-faint (#898ea3).",
+      "Do reserve the 900-weight display scale for the cover; carry in-deck hierarchy with headline/lead/body.",
+      "Do use JetBrains Mono only for machine artifacts — counts, tags, tokens, code.",
+      "Do pair the −6px/−2px hover rise with a shadow change; reserve the violet accent glow for the primary action and active nav."
+    ],
+    "donts": [
+      "Don't ship generic corporate-PowerPoint moves — bullet-point walls, clip-art, stock-photo gradients, template chrome.",
+      "Don't fall into AI-slop SaaS landing tells: gradient text via background-clip:text, identical icon-card grids, tiny tracked uppercase eyebrows above every slide, or decorative glassmorphism. The current deck still carries some of these — treat them as debt to retire, not patterns to extend.",
+      "Don't overstimulate: no motion for its own sake, no neon, no animation that competes with the content.",
+      "Don't go childish — no cartoonish illustration, bubbly rounded everything, or emoji.",
+      "Don't add color that isn't signal. If a fill or glow doesn't distinguish one concept from another, make it neutral or remove it."
+    ]
+  }
+}
